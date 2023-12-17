@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Applicants list
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="/applicants">
+            <label for="name-input">Filter by mentor last name:</label>
+            <input id="name-input" type="text" name="applicant-last-name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div id="applicants">
+        {% for applicant in applicants %}
+            {{ applicant.first_name + " " + applicant.last_name }} -
+            {{ applicant.phone_number }} -
+            {{ applicant.email }} -
+            {{ applicant.application_code }}
+            <br>
+        {% endfor %}
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}

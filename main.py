@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect
+import psycopg2
+import psycopg2.extras
 
 import data_manager
 
@@ -10,9 +12,11 @@ def index():
     return render_template('index.html')
 
 
+
 @app.route('/mentors')
 def mentors_list():
     mentor_name = request.args.get('mentor-last-name')
+
 
     if mentor_name:
         mentor_details = data_manager.get_mentors_by_last_name(mentor_name)
@@ -23,6 +27,15 @@ def mentors_list():
 
     return render_template('mentors.html', mentors=mentor_details)
 
+@app.route('/applicants_list')
+def applicants_list():
+    applicant_name = request.args.get('applicant-last-name')
+    if applicant_name:
+        applicant_details = data_manager.get_applicants_by_last_name(applicant_name)
+    else:
+        applicant_details = data_manager.get_applicants()
+
+    return render_template('applicants.html', applicants=applicant_details)
 
 if __name__ == '__main__':
     app.run(debug=True)

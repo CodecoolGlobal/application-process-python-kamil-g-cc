@@ -16,11 +16,25 @@ def get_mentors(cursor):
     return cursor.fetchall()
 
 
+
 @database_common.connection_handler
 def get_mentors_by_last_name(cursor, last_name):
     query = """
         SELECT first_name, last_name, city
         FROM mentor
+        WHERE last_name=%(last_name)s
         ORDER BY first_name"""
+    cursor.execute(query, {'last_name': last_name})
+    return cursor.fetchall(cursor, last_name)
+
+@database_common.connection_handler
+def get_distinct_cities(cursor):
+    query="""
+    SELECT city
+    FROM mentor
+    ORDER BY first_name
+    """
     cursor.execute(query)
-    return cursor.fetchall()
+    return cursor.fetchall(cursor)
+
+
