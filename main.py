@@ -10,13 +10,14 @@ def index():
     return render_template('index.html')
 @app.route('/add-applicant')
 def add_applicant():
-    if request.method == "POST":
-        applicant_first_name = request.form.get("applicant-first-name")
-        applicant_last_name = request.form.get("applicant-last-name")
-        applicant_phone = request.form.get("applicant-phone")
-        applicant_email = request.form.get("applicant-email")
+    if request.method == "GET":
+        applicant_first_name = "Kamil" #request.form.get("applicant-first-name")
+        applicant_last_name = "Grondys" #request.form.get("applicant-last-name")
+        applicant_phone = "600099971" #request.form.get("applicant-phone")
+        applicant_email = "kamil.grondys@codecool.com" #request.form.get("applicant-email")
+        #data_manager.add_applicant(applicant_first_name, applicant_last_name, applicant_phone, applicant_email)
         data_manager.add_applicant(applicant_first_name, applicant_last_name, applicant_phone, applicant_email)
-        return redirect("/applicants")
+        return redirect("/mentors")
     return render_template("add_applicant.html")
 
 @app.route('/applicants-phone')
