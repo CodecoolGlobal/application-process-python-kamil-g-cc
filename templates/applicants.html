@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+    Mentors list
+{% endblock %}
+
+{% block content %}
+
+    <div id="applicants">
+        <ul>
+        {% for applicant in applicants %}
+            <li>{{ applicant.full_name }}, Phone number:{{ applicant.phone_number }}
+        {% endfor %}
+        </ul>
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}

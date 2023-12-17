@@ -9,12 +9,19 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/applicants-phone')
+def applicant_phone():
+    applicant_name = request.args.get('applicant-name')
+    applicants = data_manager.get_applicants_by_name(applicant_name)
+    return render_template("applicants.html", applicants = applicants)
 
 @app.route('/mentors', methods=["GET"])
 def mentors_list():
     mentor_name = request.args.get('mentor-last-name')
     city_name = request.args.get('city-name')
     cities = data_manager.get_distinc_cities()
+    if city_name == "-1":
+        city_name = None
     if mentor_name:
         mentor_details = data_manager.get_mentors_by_last_name(mentor_name)
     else:
