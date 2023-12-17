@@ -9,6 +9,13 @@
         <form action="/mentors">
             <label for="name-input">Filter by mentor last name:</label>
             <input id="name-input" type="text" name="mentor-last-name">
+            <label for="city">Select a city to apply the filter:</label>
+            <select name="city" id="city">
+                <option value="-1">Select a city from dropdown list</option>
+                {% for city in cities %}
+                    <option value="{{ city.city }}">{{ city.city }}</option>
+                {% endfor %}
+            </select>
             <button type="submit">Search</button>
         </form>
     </div>
