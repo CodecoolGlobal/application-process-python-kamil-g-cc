@@ -55,3 +55,17 @@ def get_applicants_by_name(cursor, applicant_name):
     """
     cursor.execute(query, {"name": applicant_name})
     return cursor.fetchall()
+
+@database_common.connection_handler
+def add_applicant(applicant_first_name, applicant_last_name, applicant_phone, applicant_email):
+    query = """
+        INSERT INTO applicant(first_name, last_name, phone_number, email) 
+        VALUES (%(first_name)s, %(last_name)s, %(phone_number)s, %(email)s, %(first_name)s);
+    """
+    query.execute(query, {
+        "first_name" : applicant_first_name,
+        "last_name": applicant_last_name,
+        "phone_number" : applicant_phone,
+        "email" : applicant_email
+    })
+    return None

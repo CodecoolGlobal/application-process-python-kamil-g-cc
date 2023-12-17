@@ -6,7 +6,7 @@
 
 {% block content %}
     <div>
-        <form action="/mentors">
+        <form method="GET" action="/mentors">
             <label for="name-input">Filter by mentor last name:</label>
             <input id="name-input" type="text" name="mentor-last-name" value="{{ mentor_name }}">
             <label for="city">Select a city to apply the filter:</label>
