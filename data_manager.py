@@ -34,3 +34,14 @@ def get_distinc_cities(cursor):
     """
     cursor.execute(query)
     return cursor.fetchall()
+
+@database_common.connection_handler
+def get_mentors_by_city_name(cursor, city_name):
+    query = """
+        SELECT first_name, last_name, city
+        FROM mentor
+        WHERE city=%(city_name)s
+        ORDER BY first_name 
+    """
+    cursor.execute(query, {"city_name":city_name})
+    return cursor.fetchall()
